@@ -1,6 +1,6 @@
 var express = require('express');
 var server  = require('./server');
-var models  = require('./models');
+//var models  = require('./models');
 var app     = express();
 
 // initialize the controllers
@@ -27,9 +27,8 @@ function startServer(err) {
 }
 
 function errorHandler(err, req, res, next) {
-  if (~err.message.indexOf('not found')) return next();
+  if (err.message.indexOf('not found') !== -1) return next();
   console.error(err.stack);
-
   res.status(500).send('An error has occurred.');
 }
 
@@ -37,4 +36,5 @@ function notFoundHandler(req, res, next) {
   res.status(404).send('Not found');
 }
 
-loadModels(startServer);
+// loadModels(startServer);
+startServer();
