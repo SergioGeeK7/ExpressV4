@@ -8,6 +8,7 @@ module.exports = function(sequelize, DataType) {
       associate: function(models) {
           //User.hasMany(models.UserPassport, {foreignKey: 'user_id'});
           User.hasOne(models.UserPassWords);
+          User.hasMany(models.Pictures);
       }
     },
     instanceMethods: {
