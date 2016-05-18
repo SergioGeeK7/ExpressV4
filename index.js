@@ -1,18 +1,21 @@
 var express = require('express');
 var server  = require('./server');
-//var models  = require('./models');
+var models  = require('./models');
 var app     = express();
-
+var dataMock  = require("./dataMock.js")
 // initialize the controllers
 app = require('./controllers')(app);
 
 function loadModels(fn) {
-  models.sequelize.sync({force: true}).complete(fn);
+  models
+      .sequelize
+      .sync({force: true})
+      .then(dataMock.bind(null,models))
+      .then(fn)
 }
 
-function startServer(err) {
-  if (err) throw err;
-
+function startServer() {
+  
   var port = process.env.PORT || 3000;
 
   server.use(express.static('./public'));
@@ -36,5 +39,5 @@ function notFoundHandler(req, res, next) {
   res.status(404).send('Not found');
 }
 
-// loadModels(startServer);
-startServer();
+loadModels(startServer);
+//startServer();

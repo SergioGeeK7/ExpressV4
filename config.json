@@ -1,0 +1,21 @@
+{
+  "db": {
+    "username" : "root",
+    "password" : "pse",
+    "database" : "pse",
+    "dialect"  : "mysql",
+    "host"     : "127.0.0.1"
+  },
+  "express" : {
+    "sessions": {
+      "key": "sid",
+      "secret": "This is a my secret ...shhhhhh",
+      "resave":true,
+      "saveUninitialized":false,
+      "cookie": {
+        "httpOnly": true,
+        "secure": false
+      }
+    }
+  }
+}

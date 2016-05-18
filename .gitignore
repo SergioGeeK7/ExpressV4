@@ -60,6 +60,5 @@ Thumbs.db
 
 # Project Specific
 
-config.json
-public/assets/*
-!public/assets/.gitkeep
+#public/assets/*
+#!public/assets/.gitkeep
