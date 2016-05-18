@@ -9,6 +9,7 @@
   "author": "SergioGeek7",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.0.2",
     "compression": "^1.0.2",
     "cookie-parser": "^1.0.1",
@@ -23,6 +24,6 @@
     "passport": "^0.2.0",
     "passport-google-oauth": "^0.1.5",
     "pg": "^3.0.3",
-    "sequelize": "^2.0.0-dev11"
+    "sequelize": "^3.23.2"
   }
 }

@@ -16,7 +16,7 @@ function loadModels(fn) {
 
 function startServer() {
   
-  var port = process.env.PORT || 3000;
+  var port = process.env.PORT || 4444;
 
   server.use(express.static('./public'));
   server.use('/api', app);

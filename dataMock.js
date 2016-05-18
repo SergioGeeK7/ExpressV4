@@ -14,7 +14,7 @@ module.exports = function (db){
             }
         ])
          .then(function (user){
-            return db.UserPassWords.bulkCreate([{
+             return db.UserPassWords.bulkCreate([{
                 password  : "password",
                 expire    :  Date.now(),
                 UserId    :  1
@@ -24,7 +24,8 @@ module.exports = function (db){
                 expire    :  Date.now(),
                 UserId    :  2
             }
-            ]);
+            ], {validate: true, individualHooks: true});
+         
         })
          .then(function (){
             return db.Users
@@ -46,7 +47,7 @@ module.exports = function (db){
                     .Pictures
                     .bulkCreate([{
                         UserId : 1,
-                        url    : "http://google.com/img.png"
+                        url    : "http://simplenote.com/img.png"
                     },
                     {
                         UserId : 1,
@@ -69,7 +70,8 @@ module.exports = function (db){
                             id : 1
                         },
                         include :[{
-                            model: db.Pictures
+                            model: db.Pictures ,
+                            where: { url: { $like: '%google%' }}
                         }]
                     }); 
         })
@@ -78,6 +80,14 @@ module.exports = function (db){
             console.log(dataset[0].dataValues.Pictures.length)
             console.log(dataset[0].dataValues.Pictures[0].dataValues.url)
             console.log(dataset[0].dataValues.Pictures[1].dataValues.url)
+            
+            
+            Object.keys(db.Users).forEach(function (item){
+                if(item.indexOf("PassWord")){
+                    console.log(item);
+                }
+            })
+            
         })
         .then(function (){
             console.log("Done !");
@@ -85,3 +95,13 @@ module.exports = function (db){
     
     
 }
+
+
+// User.belongsTo(Company); // Will add companyId to user
+// Find all projects with a least one task where task.state === project.task
+// Project.findAll({
+//     include: [{
+//         model: Task,
+//         where: { state: Sequelize.col('project.state') }
+//     }]
+// })
