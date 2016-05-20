@@ -1,11 +1,12 @@
 {
   "db": {
     "username" : "root",
-    "password" : "pse",
+    "password" : "",
     "database" : "pse",
     "dialect"  : "mysql",
     "host"     : "127.0.0.1"
   },
+  "secretJWT":"this is my secret ...shhh",
   "express" : {
     "sessions": {
       "key": "sid",
